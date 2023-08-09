@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest # 使用PostgreSQL官方Docker镜像
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: "daxiong_first_database"
+            - name: POSTGRES_USER
+              value: "daxiong"
+            - name: POSTGRES_PASSWORD
+              value: "Aa123456"
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-storage
+          emptyDir: {}

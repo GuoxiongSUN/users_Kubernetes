@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-app
+spec:
+  selector:
+    matchLabels:
+      app: users-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: users-app
+    spec:
+      containers:
+        - name: users-app
+          image: users:latest # Replace this with your actual Docker image name
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8888
+          env:
+            - name: env_url
+              value: jdbc:postgresql://postgres-service:5432/daxiong_first_database
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "daxiong"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "Aa123456"

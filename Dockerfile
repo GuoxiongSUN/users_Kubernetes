@@ -1,5 +1,5 @@
 FROM openjdk:11
 WORKDIR /opt/app
-ARG JAR_FILE=/target/hello-world-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+ARG JAR_FILE=/target/users-kubernetes-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} users.jar
+ENTRYPOINT ["java","-jar","users.jar"]
